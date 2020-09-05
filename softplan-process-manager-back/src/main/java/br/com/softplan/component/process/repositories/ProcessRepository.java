@@ -1,0 +1,10 @@
+package br.com.softplan.component.process.repositories;
+
+import br.com.softplan.domain.Process;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface ProcessRepository extends JpaRepository<Process, Long>, JpaSpecificationExecutor<Process> {
+}

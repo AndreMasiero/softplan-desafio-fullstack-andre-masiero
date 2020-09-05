@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User implements Serializable {
@@ -28,6 +30,9 @@ public class User implements Serializable {
     @OneToOne()
     @JoinColumn(name = "role_id", referencedColumnName = "id")
     private Role role;
+
+    @OneToMany(mappedBy = "user")
+    private List<Process> process = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -77,6 +82,15 @@ public class User implements Serializable {
         this.role = role;
     }
 
+    public List<Process> getProcess() {
+        return process;
+    }
+
+    public void setProcess(List<Process> process) {
+        this.process = process;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -89,7 +103,8 @@ public class User implements Serializable {
         if (lastName != null ? !lastName.equals(user.lastName) : user.lastName != null) return false;
         if (username != null ? !username.equals(user.username) : user.username != null) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
-        return role != null ? role.equals(user.role) : user.role == null;
+        if (role != null ? !role.equals(user.role) : user.role != null) return false;
+        return process != null ? process.equals(user.process) : user.process == null;
     }
 
     @Override
@@ -100,6 +115,7 @@ public class User implements Serializable {
         result = 31 * result + (username != null ? username.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (role != null ? role.hashCode() : 0);
+        result = 31 * result + (process != null ? process.hashCode() : 0);
         return result;
     }
 }

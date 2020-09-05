@@ -70,6 +70,14 @@ public class UserService {
         return UserMapper.entityToOutputDtoList(userRepository.findAll(filter));
     }
 
+    public void delete(Long id) throws Exception {
+        try {
+            userRepository.deleteById(id);
+        } catch (Exception e) {
+            throw new Exception(ErrorMessage.ERROR_DELETE_USER.getDescription());
+        }
+    }
+
     private RoleUser getProfile() {
         User userPrincipal = getUserService.user();
         return userPrincipal.getRole().getName();

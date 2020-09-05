@@ -15,7 +15,6 @@ public class Role implements Serializable {
     @Enumerated(EnumType.STRING)
     private RoleUser name;
 
-
     public Integer getId() {
         return id;
     }

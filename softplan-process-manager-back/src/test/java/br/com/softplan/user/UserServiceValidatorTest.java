@@ -14,6 +14,7 @@ import org.mockito.MockitoAnnotations;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 import static org.mockito.Mockito.doReturn;
 
 public class UserServiceValidatorTest {
@@ -41,6 +42,7 @@ public class UserServiceValidatorTest {
 
         try {
             userServiceValidator.isValid(inputDto, null);
+            fail("Deveria ter lançado excessão");
         } catch (Exception e) {
             assertThat(e.getMessage(), is(ErrorMessage.USER_INVALID_EMAIL.getDescription()));
         }
@@ -55,6 +57,7 @@ public class UserServiceValidatorTest {
 
         try {
             userServiceValidator.isValid(inputDto, null);
+            fail("Deveria ter lançado excessão");
         } catch (Exception e) {
             assertThat(e.getMessage(), is(ErrorMessage.USER_EMAIL_ALREADY_IN_USE.getDescription()));
         }
@@ -69,6 +72,7 @@ public class UserServiceValidatorTest {
 
         try {
             userServiceValidator.isValid(inputDto, 2L);
+            fail("Deveria ter lançado excessão");
         } catch (Exception e) {
             assertThat(e.getMessage(), is(ErrorMessage.USER_EMAIL_UNAVAILABLE.getDescription()));
         }

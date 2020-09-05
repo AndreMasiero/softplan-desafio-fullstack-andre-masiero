@@ -43,4 +43,13 @@ public class UserController {
     public ResponseEntity<List<UserOutputDto>> findAll() {
         return ResponseEntity.ok().body(userService.findAll());
     }
+
+    @PreAuthorize("hasAnyRole('"
+            + RolesAllowedConstants.ADMIN + "', '"
+            + RolesAllowedConstants.TRIATOR + "')")
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Void> delete(@PathVariable Long id) throws Exception {
+        userService.delete(id);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(null);
+    }
 }

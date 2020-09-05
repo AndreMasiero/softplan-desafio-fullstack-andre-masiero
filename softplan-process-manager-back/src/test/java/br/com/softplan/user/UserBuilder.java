@@ -5,6 +5,8 @@ import br.com.softplan.domain.Role;
 import br.com.softplan.domain.User;
 import br.com.softplan.enums.RoleUser;
 
+import java.util.Optional;
+
 public class UserBuilder {
 
     private UserInputDto userInputDto;
@@ -34,6 +36,17 @@ public class UserBuilder {
         user.setRole(getRole());
 
         return user;
+    }
+
+    public static Optional<User> getUserByIdOptional() {
+        User user = new User();
+        user.setId(1L);
+        user.setFirstName("André");
+        user.setLastName("Masiero");
+        user.setUsername("andre@andre.com");
+        user.setPassword("123456");
+        user.setRole(getRole());
+        return Optional.of(user);
     }
 
     private static Role getRole() {
