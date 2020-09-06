@@ -39,6 +39,14 @@ public class UserController {
     @PreAuthorize("hasAnyRole('"
             + RolesAllowedConstants.ADMIN + "', '"
             + RolesAllowedConstants.TRIATOR + "')")
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<UserOutputDto> getUser(@PathVariable final Long id) throws Exception {
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(userService.getUser(id));
+    }
+
+    @PreAuthorize("hasAnyRole('"
+            + RolesAllowedConstants.ADMIN + "', '"
+            + RolesAllowedConstants.TRIATOR + "')")
     @GetMapping
     public ResponseEntity<List<UserOutputDto>> findAll() {
         return ResponseEntity.ok().body(userService.findAll());

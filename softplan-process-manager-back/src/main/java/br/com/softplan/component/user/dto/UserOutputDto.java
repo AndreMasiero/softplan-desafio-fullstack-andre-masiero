@@ -1,11 +1,14 @@
 package br.com.softplan.component.user.dto;
 
+import br.com.softplan.enums.RoleUser;
+
 public class UserOutputDto {
 
     private Long id;
     private String firstName;
     private String lastName;
     private String email;
+    private RoleUser role;
 
     public Long getId() {
         return id;
@@ -37,5 +40,13 @@ public class UserOutputDto {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public RoleUser getRole() {
+        return role;
+    }
+
+    public void setRole(RoleUser role) {
+        this.role = role;
     }
 }

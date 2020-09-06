@@ -1,0 +1,60 @@
+<div class="background">
+  <app-menu></app-menu>
+  <mat-card class="card">
+    <h2 style="color: red" *ngIf='errorMessage'>{{errorMessage}}</h2>
+    <br>
+    <div class="ui-100">
+      <div class="ui-33">
+        <mat-form-field appearance="legacy" style=" width: 90%;">
+          <mat-label>Nome</mat-label>
+          <input matInput placeholder="Informe seu nome" [(ngModel)]="userInputDto.firstName">
+        </mat-form-field>
+      </div>
+      <div class="ui-33">
+        <mat-form-field appearance="legacy" style=" width: 90%;">
+          <mat-label>Sobrenome</mat-label>
+          <input matInput placeholder="Informe seu sobrenome" [(ngModel)]="userInputDto.lastName">
+        </mat-form-field>
+      </div>
+      <div class="ui-33">
+        <mat-form-field appearance="legacy" style=" width: 90%;">
+          <mat-label>E-mail</mat-label>
+          <input matInput placeholder="Informe seu e-mail" [(ngModel)]="userInputDto.email">
+        </mat-form-field>
+      </div>
+      <div class="ui-33">
+        <mat-form-field appearance="fill" style=" width: 90%;">
+          <mat-label>Perfíl</mat-label>
+          <mat-select [(value)]="userInputDto.role">
+            <mat-option *ngFor="let role of roles" [value]="role.value">
+              {{role.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="ui-100">
+      <div class="ui-33">
+        <mat-form-field appearance="legacy" style=" width: 90%;">
+          <mat-label>Senha</mat-label>
+          <input type="password" matInput placeholder="Senha" [(ngModel)]="confirmPassword">
+        </mat-form-field>
+      </div>
+      <div class="ui-33">
+        <mat-form-field appearance="legacy" style=" width: 90%;">
+          <mat-label>Confirmar Senha</mat-label>
+          <input type="password" matInput placeholder="Repetir senha" [(ngModel)]="password">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="save">
+      <section>
+        <div class="button-row">
+          <button mat-raised-button (click)="cancel()">Cancelar</button>&nbsp;
+          <button mat-raised-button color="primary" (click)="saveOrUpdate()">Salvar</button>
+        </div>
+      </section>
+    </div>
+  </mat-card>
+
+</div>

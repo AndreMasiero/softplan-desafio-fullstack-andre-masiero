@@ -1,0 +1,32 @@
+<div class="background-login">
+    <div class="form-login">
+        <mat-card class="card">
+            <mat-card-header>
+                <mat-card-title>Login</mat-card-title>
+                <mat-card-subtitle>Sistema de Gestão de Processos SoftPlan</mat-card-subtitle>
+            </mat-card-header>
+            <div class="card">
+                <form class="form">
+                    <label style="color: red" *ngIf='invalidLogin'>{{errorMessage}}</label>
+                    <br><br>
+                    <div class="form-group">
+                        <mat-form-field class="full-width">
+                            <mat-label>E-mail</mat-label>
+                            <input matInput type="text" class="form-control" id="username" [(ngModel)]="email" placeholder="Entre com o e-mail" name="email">
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Senha</mat-label>
+                            <input matInput id="password" placeholder="Entre com a senha" name="password" type="password" [(ngModel)]="password">
+                        </mat-form-field>
+                    </div>
+                    <button (click)=login() class="btn btn-success">Login</button>
+                </form>
+            </div>
+        </mat-card>
+        <div>
+            <a mat-button href="https://github.com/AndreMasiero/softplan-desafio-fullstack-andre-masiero" target="_blank">Projeto GIT</a>
+        </div>
+    </div>
+</div>

@@ -22,7 +22,7 @@ public class UserInputDto {
     private String email;
 
     @NotEmpty(message = "Preenchimento obrigatório")
-    @Length(min = 6, max = 14, message = "O tamanho deve ser entre 3 e 14 caracteres")
+    @Length(min = 6, max = 14, message = "O tamanho deve ser entre 6 e 14 caracteres")
     private String password;
 
     @NotEmpty

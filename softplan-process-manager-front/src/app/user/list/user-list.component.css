@@ -1,0 +1,76 @@
+.background {
+  content: "";
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #c9d7db !important;
+  background-position: 88% 50% !important;
+  background-repeat: no-repeat !important;
+  background-size: cover;
+  background-attachment: fixed !important;
+  height: 100% !important;
+  z-index: 0;
+  animation: f17imgfade 0.5s 0s 1 cubic-bezier(0, 0, 0.2, 1) forwards
+}
+
+table {
+  width: 100%;
+}
+
+.card {
+  position: relative;
+  width: 88%;
+  height: 80%;
+  top: 3%;
+  left: 5%;
+  right: 5%;
+  bottom: 5%;
+  border-radius: 8px
+}
+
+section {
+  display: table;
+}
+
+.button-row {
+  display: table-cell;
+  width: 490px;
+}
+
+
+/* Structure */
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 88%;
+  top: 0%;
+  left: 0%;
+  right: 0%;
+  bottom: 0%;
+  border-radius: 8px
+}
+
+.table-container {
+  position: relative;
+  max-height: 500px;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+}
+
+
+/* Column Widths */
+
+.mat-column-number,
+.mat-column-state {
+  max-width: 64px;
+}
+
+.mat-column-created {
+  max-width: 124px;
+}

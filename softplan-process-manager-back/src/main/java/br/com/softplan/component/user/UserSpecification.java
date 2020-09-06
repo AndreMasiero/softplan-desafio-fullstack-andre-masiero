@@ -9,12 +9,13 @@ import org.springframework.data.jpa.domain.Specification;
 import static org.springframework.data.jpa.domain.Specification.where;
 
 public class UserSpecification {
-    public static Specification<User> findByTriatorAndFinisher() {
+    public static Specification<User> findByFilter(RoleUser roleUser) {
 
         Specification<User> where = where(null);
         Specification<User> whereOR = where(null);
 
-        where = where.and(whereOR.or(roleEquals(RoleUser.ROLE_TRIATOR)).or(roleEquals(RoleUser.ROLE_FINISHER)));
+        if (roleUser.equals(RoleUser.ROLE_TRIATOR))
+            where = where.and(whereOR.or(roleEquals(RoleUser.ROLE_TRIATOR)).or(roleEquals(RoleUser.ROLE_FINISHER)));
 
         return where;
     }

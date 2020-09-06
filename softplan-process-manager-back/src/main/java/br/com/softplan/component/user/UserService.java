@@ -39,7 +39,7 @@ public class UserService {
 
         User user;
         try {
-            user = userRepository.save(UserMapper.inputDtoToEntity(inputDto, getRole(inputDto), null));
+            user = userRepository.save(UserMapper.inputDtoToEntity(inputDto, null, getRole(inputDto), null));
         } catch (Exception e) {
             throw new Exception(ErrorMessage.ERROR_SAVING_USER.getDescription());
         }
@@ -53,7 +53,8 @@ public class UserService {
 
         User user;
         try {
-            user = userRepository.save(UserMapper.inputDtoToEntity(inputDto, getRole(inputDto), id));
+            user = userRepository.findById(id).get();
+            userRepository.save(UserMapper.inputDtoToEntity(inputDto, user, getRole(inputDto), id));
         } catch (Exception e) {
             throw new Exception(ErrorMessage.ERROR_UPDATE_USER.getDescription());
         }
@@ -61,11 +62,12 @@ public class UserService {
         return user.getId();
     }
 
-    public List<UserOutputDto> findAll() {
-        Specification<User> filter = null;
+    public UserOutputDto getUser(Long id) {
+        return UserMapper.entityToOutputDto(userRepository.findById(id).get());
+    }
 
-        if (getProfile().equals(RoleUser.ROLE_ADMIN))
-            filter = UserSpecification.findByTriatorAndFinisher();
+    public List<UserOutputDto> findAll() {
+        Specification<User> filter = UserSpecification.findByFilter(getProfile());
 
         return UserMapper.entityToOutputDtoList(userRepository.findAll(filter));
     }

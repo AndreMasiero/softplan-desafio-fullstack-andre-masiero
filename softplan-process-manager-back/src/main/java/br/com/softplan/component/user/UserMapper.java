@@ -11,14 +11,20 @@ import java.util.List;
 
 public class UserMapper {
 
-    public static User inputDtoToEntity(UserInputDto inputDto, Role role, Long id) {
+    public static User inputDtoToEntity(UserInputDto inputDto, User user, Role role, Long id) {
 
-        User user = new User();
+        if (user == null) {
+            user = new User();
+        }
+
         user.setId(id != null ? id : null);
         user.setFirstName(inputDto.getFirstName());
         user.setLastName(inputDto.getLastName());
         user.setUsername(inputDto.getEmail());
-        user.setPassword(new BCryptPasswordEncoder().encode(inputDto.getPassword()));
+        user.setId(user.getId());
+        if (inputDto.getPassword() != null) {
+            user.setPassword(new BCryptPasswordEncoder().encode(inputDto.getPassword()));
+        }
         user.setRole(role);
 
         return user;
@@ -38,6 +44,17 @@ public class UserMapper {
         });
 
         return userOutputDto;
+    }
+
+    public static UserOutputDto entityToOutputDto(User user) {
+        UserOutputDto outputDto = new UserOutputDto();
+        outputDto.setId(user.getId());
+        outputDto.setFirstName(user.getFirstName());
+        outputDto.setLastName(user.getLastName());
+        outputDto.setEmail(user.getUsername());
+        outputDto.setRole(user.getRole().getName());
+
+        return outputDto;
     }
 
 }
