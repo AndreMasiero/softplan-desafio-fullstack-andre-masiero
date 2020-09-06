@@ -1,0 +1,40 @@
+<div class="background">
+  <app-menu></app-menu>
+  <mat-card class="card">
+    <h2 style="color: red" *ngIf='errorMessage'>{{errorMessage}}</h2>
+    <br>
+    <div class="ui-100">
+      <div class="ui-33">
+        <mat-form-field appearance="legacy" style=" width: 90%;">
+          <mat-label>Nome</mat-label>
+          <input matInput placeholder="Informe o nome do Processo" [(ngModel)]="processInputDto.name">
+        </mat-form-field>
+      </div>
+      <div class="ui-33">
+        <mat-form-field appearance="legacy" style=" width: 90%;">
+          <mat-label>Descrição</mat-label>
+          <textarea rows="3" cols="2" matInput placeholder="Descrição do Processo" [(ngModel)]="processInputDto.description"></textarea>
+        </mat-form-field>
+      </div>
+      <div class="ui-33">
+        <mat-form-field appearance="fill" style=" width: 90%;">
+          <mat-label>Usuários</mat-label>
+          <mat-select [(value)]="processInputDto.usersId" multiple>
+            <mat-option *ngFor="let user of users" [value]="user.value">
+              {{user.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="save">
+      <section>
+        <div class="button-row">
+          <button mat-raised-button (click)="cancel()">Cancelar</button>&nbsp;
+          <button mat-raised-button color="primary" (click)="saveOrUpdate()">Salvar</button>
+        </div>
+      </section>
+    </div>
+  </mat-card>
+
+</div>

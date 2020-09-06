@@ -1,0 +1,70 @@
+<div class="background">
+  <app-menu></app-menu>
+  <mat-card class="card">
+    <section>
+      <div class="button-row">
+        <button mat-raised-button color="primary" (click)="create()">Novo</button>
+      </div>
+    </section>
+    <br>
+    <div class="ui-100">
+      <div class="ui-33">
+        <mat-label>Pendentes</mat-label>
+        <br>
+      </div>
+      <div class="ui-33">
+        <mat-label>Em Andamento</mat-label>
+      </div>
+      <div class="ui-33">
+        <mat-label>Finalizados</mat-label>
+      </div>
+    </div>
+    <br>
+    <mat-divider></mat-divider>
+    <div class="ui-100">
+      <div class="ui-33">
+        <div *ngFor="let process of pending">
+          <mat-card class="card-process">
+            <mat-label>Processo: {{process.name}}</mat-label>
+            <button mat-button>
+              <mat-icon class="mr-1" title="Editar">view_headline</mat-icon>
+            </button>
+            <mat-divider></mat-divider>
+            <br><br>
+            <mat-label>{{process.description}}</mat-label>
+          </mat-card>
+          <br>
+        </div>
+      </div>
+      <div class="ui-33">
+        <div *ngFor="let process of running">
+          <mat-card class="card-process">
+            <mat-label>Processo: {{process.name}}</mat-label>
+            <button mat-button>
+              <mat-icon class="mr-1" title="Editar">view_headline</mat-icon>
+            </button>
+            <mat-divider></mat-divider>
+            <br><br>
+            <mat-label>{{process.description}}</mat-label>
+          </mat-card>
+          <br>
+        </div>
+      </div>
+      <div class="ui-33">
+        <div *ngFor="let process of finished">
+          <mat-card class="card-process">
+            <mat-label>Processo: {{process.name}}</mat-label>
+            <button mat-button>
+              <mat-icon class="mr-1" title="Editar">view_headline</mat-icon>
+            </button>
+            <mat-divider></mat-divider>
+            <br><br>
+            <mat-label>{{process.description}}</mat-label>
+          </mat-card>
+          <br>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+
+</div>

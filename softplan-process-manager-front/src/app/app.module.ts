@@ -30,13 +30,17 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import {StorageService} from './services/storage.service';
 import {UserListComponent} from './user/list/user-list.component';
 import {UserNewComponent} from './user/new/user-new.component';
+import {ProcessListComponent} from './process/list/process-list.component';
+import {ProcessNewComponent} from './process/new/process-new.component';
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
     LoginComponent,
     UserListComponent,
-    UserNewComponent
+    UserNewComponent,
+    ProcessListComponent,
+    ProcessNewComponent
   ],
   imports: [
     BrowserModule,

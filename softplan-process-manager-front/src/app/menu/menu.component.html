@@ -7,11 +7,11 @@
           <mat-icon class="ml-1">arrow_drop_down</mat-icon>
         </button>
         <mat-menu #dropDown="matMenu" overlapTrigger="false">
-          <button mat-menu-item>
+          <button mat-menu-item (click)="user()">
             <mat-icon>account_circle</mat-icon>
             <span>Usuários</span>
           </button>
-          <button mat-menu-item>
+          <button mat-menu-item (click)="process()">
             <mat-icon>assignment</mat-icon>
             <span>Processos</span>
           </button>
@@ -23,15 +23,3 @@
   </mat-sidenav-content>
   <router-outlet></router-outlet>
 </mat-sidenav-container>
-
-<!--<div class="background-menu" style="text-align: right;">-->
-<!--    <button style="background-color: cornflowerblue; top: 10px; right: 10px;" mat-icon-button [matMenuTriggerFor]="menu">-->
-<!--        <mat-icon>more_vert</mat-icon>-->
-<!--    </button>-->
-<!--    <mat-menu #menu="matMenu">-->
-<!--        <button mat-menu-item>-->
-<!--            <mat-icon>exit_to_app</mat-icon>-->
-<!--            <span><a *ngIf="isLoggedIn" class="nav-link" href="/logout" (click)=handleLogout()>Sair</a></span>-->
-<!--        </button>-->
-<!--    </mat-menu>-->
-<!--</div>-->

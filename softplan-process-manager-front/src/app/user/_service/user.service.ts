@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {UserOutputDto} from './_model/user-output-dto';
-import {UserInputDto} from './_model/user-input-dto';
-import {API_CONFIG} from '../config/api.config';
+import {UserOutputDto} from '../_model/user-output-dto';
+import {UserInputDto} from '../_model/user-input-dto';
+import {API_CONFIG} from '../../config/api.config';
 
 @Injectable({
   providedIn: 'root'

@@ -1,5 +1,5 @@
 import {Component, Injector, OnInit} from '@angular/core';
-import {UserService} from '../user.service';
+import {UserService} from '../_service/user.service';
 import {UserInputDto} from '../_model/user-input-dto';
 import {ActivatedRoute, Router} from '@angular/router';
 
