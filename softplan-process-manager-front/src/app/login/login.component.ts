@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Router, ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {HttpResponse} from '@angular/common/http';
 import {AuthenticationService} from './auth.service';
+import {UserAuthorizationService} from '../services/UserAuthorizationService';
 
 @Component({
   selector: 'app-login',
@@ -9,6 +10,8 @@ import {AuthenticationService} from './auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+  userAuthorization: UserAuthorizationService;
 
   email: string;
   password: string;
@@ -24,6 +27,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.userAuthorization = new UserAuthorizationService();
   }
 
   login() {
@@ -32,9 +36,14 @@ export class LoginComponent implements OnInit {
       this.invalidLogin = false;
       this.loginSuccess = true;
       this.successMessage = 'Logado com sucesso.';
-      this.router.navigate(['/user']);
+      if (this.userAuthorization.hasAuthorizationType(this.userAuthorization.triator) ||
+        this.userAuthorization.hasAuthorizationType(this.userAuthorization.finisher)) {
+        this.router.navigate(['/process']);
+      } else {
+        this.router.navigate(['/user']);
+      }
     }, (error) => {
-      console.log(error)
+      console.log(error);
       this.invalidLogin = true;
       this.loginSuccess = false;
     });

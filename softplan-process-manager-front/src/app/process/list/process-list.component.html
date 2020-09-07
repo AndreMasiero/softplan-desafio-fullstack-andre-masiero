@@ -3,7 +3,11 @@
   <mat-card class="card">
     <section>
       <div class="button-row">
-        <button mat-raised-button color="primary" (click)="create()">Novo</button>
+        <button mat-raised-button color="primary" (click)="create()"
+                [disabled]="userAuthorization.hasAuthorizationType(userAuthorization.admin) ||
+                 userAuthorization.hasAuthorizationType(userAuthorization.finisher)">
+          Novo
+        </button>
       </div>
     </section>
     <br>
@@ -25,23 +29,24 @@
       <div class="ui-33">
         <div *ngFor="let process of pending">
           <mat-card class="card-process">
-            <mat-label>Processo: {{process.name}}</mat-label>
+            <mat-label>{{process.name.length > 35 ? process.name.substring(0, 35) + '...' : process.name}}</mat-label>
             <button mat-button>
-              <mat-icon class="mr-1" title="Editar">view_headline</mat-icon>
+              <mat-icon class="mr-1" title="Editar" (click)="detail(process.id)">view_headline</mat-icon>
             </button>
             <mat-divider></mat-divider>
             <br><br>
-            <mat-label>{{process.description}}</mat-label>
+            <mat-label>{{process.description.length > 70 ? process.description.substring(0, 70) + '...' : process.description}}</mat-label>
           </mat-card>
           <br>
         </div>
+        &nbsp;
       </div>
       <div class="ui-33">
-        <div *ngFor="let process of running">
+        <div *ngFor="let process of inProgress">
           <mat-card class="card-process">
             <mat-label>Processo: {{process.name}}</mat-label>
             <button mat-button>
-              <mat-icon class="mr-1" title="Editar">view_headline</mat-icon>
+              <mat-icon class="mr-1" title="Editar" (click)="detail(process.id)">view_headline</mat-icon>
             </button>
             <mat-divider></mat-divider>
             <br><br>
@@ -49,13 +54,14 @@
           </mat-card>
           <br>
         </div>
+        &nbsp;
       </div>
       <div class="ui-33">
         <div *ngFor="let process of finished">
           <mat-card class="card-process">
             <mat-label>Processo: {{process.name}}</mat-label>
             <button mat-button>
-              <mat-icon class="mr-1" title="Editar">view_headline</mat-icon>
+              <mat-icon class="mr-1" title="Editar" (click)="detail(process.id)">view_headline</mat-icon>
             </button>
             <mat-divider></mat-divider>
             <br><br>
@@ -66,5 +72,4 @@
       </div>
     </div>
   </mat-card>
-
 </div>

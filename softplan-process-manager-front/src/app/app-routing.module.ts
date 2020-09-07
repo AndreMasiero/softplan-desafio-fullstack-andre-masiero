@@ -5,6 +5,7 @@ import {UserListComponent} from './user/list/user-list.component';
 import {UserNewComponent} from './user/new/user-new.component';
 import {ProcessListComponent} from './process/list/process-list.component';
 import {ProcessNewComponent} from './process/new/process-new.component';
+import {ProcessDetailComponent} from './process/detail/process-detail.component';
 
 
 const routes: Routes = [
@@ -15,7 +16,7 @@ const routes: Routes = [
   {path: 'user/new/:id', component: UserNewComponent},
   {path: 'process', component: ProcessListComponent},
   {path: 'process/new', component: ProcessNewComponent},
-  {path: 'process/new/:id', component: ProcessNewComponent}
+  {path: 'process/detail/:id', component: ProcessDetailComponent}
 ];
 
 @NgModule({

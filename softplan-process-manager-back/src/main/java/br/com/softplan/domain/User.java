@@ -34,6 +34,9 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user")
     private List<Process> process = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user")
+    private List<ProcessFeedback> processFeedbacks = new ArrayList<>();
+
     public Long getId() {
         return id;
     }
@@ -90,6 +93,13 @@ public class User implements Serializable {
         this.process = process;
     }
 
+    public List<ProcessFeedback> getProcessFeedbacks() {
+        return processFeedbacks;
+    }
+
+    public void setProcessFeedbacks(List<ProcessFeedback> processFeedbacks) {
+        this.processFeedbacks = processFeedbacks;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -104,7 +114,8 @@ public class User implements Serializable {
         if (username != null ? !username.equals(user.username) : user.username != null) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
         if (role != null ? !role.equals(user.role) : user.role != null) return false;
-        return process != null ? process.equals(user.process) : user.process == null;
+        if (process != null ? !process.equals(user.process) : user.process != null) return false;
+        return processFeedbacks != null ? processFeedbacks.equals(user.processFeedbacks) : user.processFeedbacks == null;
     }
 
     @Override
@@ -116,6 +127,7 @@ public class User implements Serializable {
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (role != null ? role.hashCode() : 0);
         result = 31 * result + (process != null ? process.hashCode() : 0);
+        result = 31 * result + (processFeedbacks != null ? processFeedbacks.hashCode() : 0);
         return result;
     }
 }

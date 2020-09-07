@@ -32,6 +32,7 @@ import {UserListComponent} from './user/list/user-list.component';
 import {UserNewComponent} from './user/new/user-new.component';
 import {ProcessListComponent} from './process/list/process-list.component';
 import {ProcessNewComponent} from './process/new/process-new.component';
+import {ProcessDetailComponent} from './process/detail/process-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,8 @@ import {ProcessNewComponent} from './process/new/process-new.component';
     UserListComponent,
     UserNewComponent,
     ProcessListComponent,
-    ProcessNewComponent
+    ProcessNewComponent,
+    ProcessDetailComponent
   ],
   imports: [
     BrowserModule,

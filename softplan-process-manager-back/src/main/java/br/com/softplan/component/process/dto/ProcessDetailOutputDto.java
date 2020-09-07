@@ -6,29 +6,14 @@ import br.com.softplan.enums.ProcessStatus;
 import java.util.Date;
 import java.util.List;
 
-public class ProcessOutputDto {
-
-    private Long id;
+public class ProcessDetailOutputDto {
 
     private String name;
-
     private String description;
-
     private Date insertDate;
-
-    private Date updateDate;
-
-    private List<UserOutputDto> users;
-
-    private ProcessStatus processStatus;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    private ProcessStatus status;
+    private List<UserOutputDto> collaborators;
+    private List<ProcessFeedbackOutputDto> feedbacks;
 
     public String getName() {
         return name;
@@ -54,27 +39,27 @@ public class ProcessOutputDto {
         this.insertDate = insertDate;
     }
 
-    public Date getUpdateDate() {
-        return updateDate;
+    public ProcessStatus getStatus() {
+        return status;
     }
 
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
+    public void setStatus(ProcessStatus status) {
+        this.status = status;
     }
 
-    public List<UserOutputDto> getUsers() {
-        return users;
+    public List<UserOutputDto> getCollaborators() {
+        return collaborators;
     }
 
-    public void setUsers(List<UserOutputDto> users) {
-        this.users = users;
+    public void setCollaborators(List<UserOutputDto> collaborators) {
+        this.collaborators = collaborators;
     }
 
-    public ProcessStatus getProcessStatus() {
-        return processStatus;
+    public List<ProcessFeedbackOutputDto> getFeedbacks() {
+        return feedbacks;
     }
 
-    public void setProcessStatus(ProcessStatus processStatus) {
-        this.processStatus = processStatus;
+    public void setFeedbacks(List<ProcessFeedbackOutputDto> feedbacks) {
+        this.feedbacks = feedbacks;
     }
 }

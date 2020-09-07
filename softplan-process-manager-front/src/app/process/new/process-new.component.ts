@@ -44,7 +44,7 @@ export class ProcessNewComponent implements OnInit {
   getUsers() {
     this.processService.getUser().subscribe((result => {
       result.forEach(value => {
-        this.users.push({value: value.id, viewValue: value.firstName});
+        this.users.push({value: value.id, viewValue: (value.firstName + ' ' + value.lastName)});
       });
     }), error => {
       this.errorMessage = 'Não foi possível recuperar o usuário.';
@@ -95,8 +95,8 @@ export class ProcessNewComponent implements OnInit {
       this.errorMessage = 'Descrição do processo não pode ser vazio';
       return false;
     }
-    if (this.processInputDto.description.length < 3 || this.processInputDto.description.length > 300) {
-      this.errorMessage = 'Descrição do processo deve conter entre 3 e 300 caracteres';
+    if (this.processInputDto.description.length < 3 || this.processInputDto.description.length > 160) {
+      this.errorMessage = 'Descrição do processo deve conter entre 3 e 160 caracteres';
       return false;
     }
 

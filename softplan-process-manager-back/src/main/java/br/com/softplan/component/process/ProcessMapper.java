@@ -1,12 +1,13 @@
 package br.com.softplan.component.process;
 
-import br.com.softplan.component.process.dto.ProcessInputDto;
-import br.com.softplan.component.process.dto.ProcessOutputDto;
+import br.com.softplan.component.process.dto.*;
 import br.com.softplan.component.user.UserMapper;
 import br.com.softplan.component.user.dto.UserOutputDto;
 import br.com.softplan.domain.CollaboratorsProcess;
 import br.com.softplan.domain.Process;
+import br.com.softplan.domain.ProcessFeedback;
 import br.com.softplan.domain.User;
+import br.com.softplan.enums.ProcessStatus;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,7 +22,7 @@ public class ProcessMapper {
             process.setId(id != null ? id : null);
             process.setName(inputDto.getName());
             process.setDescription(inputDto.getDescription());
-            process.setFeedback(false);
+            process.setStatus(ProcessStatus.PENDING);
             process.setInsertDate(new Date());
             process.setUser(user);
         } else {
@@ -31,6 +32,16 @@ public class ProcessMapper {
         }
 
         return process;
+    }
+
+    public static ProcessFeedback processFeedbackDtoToEntity(User user, Process process, ProcessFeedbackInputDto inputDto) {
+        ProcessFeedback feedback = new ProcessFeedback();
+        feedback.setFeedback(inputDto.getFeedback());
+        feedback.setProcess(process);
+        feedback.setUser(user);
+        feedback.setInsertDate(new Date());
+
+        return feedback;
     }
 
     public static List<ProcessOutputDto> entityToOutputDtoList(List<Process> processes) {
@@ -44,11 +55,39 @@ public class ProcessMapper {
             outputDto.setInsertDate(process.getInsertDate());
             outputDto.setUpdateDate(process.getUpdateDate() != null ? process.getUpdateDate() : null);
             outputDto.setUsers(getCollaborators(process));
+            outputDto.setProcessStatus(process.getStatus());
 
             outputDtos.add(outputDto);
         });
 
         return outputDtos;
+    }
+
+    public static ProcessDetailOutputDto getProcessDetail(Process process) {
+        ProcessDetailOutputDto outputDto = new ProcessDetailOutputDto();
+
+        outputDto.setName(process.getName());
+        outputDto.setDescription(process.getDescription());
+        outputDto.setCollaborators(getCollaborators(process));
+        outputDto.setInsertDate(process.getInsertDate());
+        outputDto.setStatus(process.getStatus());
+        outputDto.setFeedbacks(getFeedbacks(process));
+
+        return outputDto;
+    }
+
+    public static List<ProcessFeedbackOutputDto> getFeedbacks(Process process) {
+        List<ProcessFeedbackOutputDto> processFeedbackOutputDtos = new ArrayList<>();
+        for (ProcessFeedback processFeedback : process.getProcessFeedbacks()) {
+            ProcessFeedbackOutputDto processFeedbackOutputDto = new ProcessFeedbackOutputDto();
+            processFeedbackOutputDto.setFeedback(processFeedback.getFeedback());
+            processFeedbackOutputDto.setInsertDate(processFeedback.getInsertDate());
+            processFeedbackOutputDto.setUser(processFeedback.getUser().getFirstName() + " " + processFeedback.getUser().getLastName());
+
+            processFeedbackOutputDtos.add(processFeedbackOutputDto);
+        }
+
+        return processFeedbackOutputDtos;
     }
 
     private static List<UserOutputDto> getCollaborators(Process process) {

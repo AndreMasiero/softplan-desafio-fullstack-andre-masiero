@@ -12,7 +12,7 @@ public class ProcessInputDto {
     private String name;
 
     @NotEmpty(message = "Preenchimento obrigatório")
-    @Length(min = 3, max = 300, message = "O tamanho deve ser entre 3 e 300 caracteres")
+    @Length(min = 3, max = 160, message = "O tamanho deve ser entre 3 e 160 caracteres")
     private String description;
 
     private Set<Long> usersId;

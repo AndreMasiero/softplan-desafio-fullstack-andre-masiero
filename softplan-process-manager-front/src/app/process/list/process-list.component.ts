@@ -2,6 +2,7 @@ import {Component, Injector, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {ProcessService} from '../_service/process.service';
 import {ProcessOutputDto} from '../_model/process-output-dto';
+import {UserAuthorizationService} from '../../services/UserAuthorizationService';
 
 @Component({
   selector: 'app-process-list',
@@ -10,10 +11,12 @@ import {ProcessOutputDto} from '../_model/process-output-dto';
 })
 export class ProcessListComponent implements OnInit {
 
+  userAuthorization: UserAuthorizationService;
+
   protected router: Router;
 
   pending: Array<ProcessOutputDto>;
-  running: Array<ProcessOutputDto>;
+  inProgress: Array<ProcessOutputDto>;
   finished: Array<ProcessOutputDto>;
 
   constructor(protected injector: Injector,
@@ -23,8 +26,10 @@ export class ProcessListComponent implements OnInit {
 
   ngOnInit(): void {
     this.pending = new Array<ProcessOutputDto>();
-    this.running = new Array<ProcessOutputDto>();
+    this.inProgress = new Array<ProcessOutputDto>();
     this.finished = new Array<ProcessOutputDto>();
+
+    this.userAuthorization = new UserAuthorizationService();
 
     this.getListProcess();
   }
@@ -35,15 +40,22 @@ export class ProcessListComponent implements OnInit {
 
   getListProcess() {
     this.processService.listAll().subscribe((result) => {
-      this.pending = result;
-      this.running = result;
-      this.finished = result;
+      result.forEach(value => {
+        if (value.processStatus === 'PENDING') {
+          this.pending.push(value);
+        } else if (value.processStatus === 'IN_PROGRESS') {
+          this.inProgress.push(value);
+        } else if (value.processStatus === 'FINISHED') {
+          this.finished.push(value);
+        }
+      });
+
     });
   }
 
-
-  update(id: number) {
-    this.router.navigateByUrl(`process/new/${id}`);
+  detail(id: number) {
+    console.log('jkdsjkhsdfjhkfds');
+    this.router.navigateByUrl(`process/detail/${id}`);
   }
 
 }

@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {API_CONFIG} from '../../config/api.config';
 import {ProcessInputDto} from '../_model/process-input-dto';
-import {ProcessOutputDto} from '../_model/process-output-dto';
+import {ProcessFeedbackInputDto} from '../_model/process-feedback-input-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +32,14 @@ export class ProcessService {
 
   update(user: ProcessInputDto, id: number) {
     return this.http.put(`${this.url}/${id}`, user);
+  }
+
+  saveFeedback(feedback: ProcessFeedbackInputDto, id: number) {
+    return this.http.post(`${this.url}/feedback/${id}`, feedback);
+  }
+
+  getDetail(id: number) {
+    return this.http.get<any>(`${this.url}/detail/${id}`);
   }
 
 }

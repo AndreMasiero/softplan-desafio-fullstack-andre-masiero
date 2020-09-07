@@ -12,7 +12,9 @@ public enum ErrorMessage {
     PROCESS_INVALIDE_COLABORATOR_ID("Nao foi encontrado um colaborador com o ID informado"),
     PROCESS_INVALIDE_COLABORATOR_PROFILE("Perfíl admin não pode participar do projeto"),
     PROCESS_SAVE_ERROR("Erro desconhecido ao salvar o processo"),
-    PROCESS_NOT_FOUND("Processo não econtrado");
+    PROCESS_NOT_FOUND("Processo não econtrado"),
+    PROCESS_FEEDBACK_SAVE_ERROR("Erro desconhecido ao salvar o parecer do processo"),
+    PROCESS_FINISHED("Este processo encotrasse finalizado.");
 
     private final String description;
 

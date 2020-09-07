@@ -24,27 +24,46 @@ public class DataBase {
 
     public void instantiateDatabase() throws ParseException {
 
-        User user = new User();
-        user.setFirstName("André");
-        user.setLastName("Masiero");
-        user.setUsername("andreboavista@gmail.com");
-        user.setPassword(new BCryptPasswordEncoder().encode("123456"));
-
         Role role = new Role();
         role.setName(RoleUser.ROLE_ADMIN);
         Role roleAdmin = roleRepository.save(role);
 
         role = new Role();
         role.setName(RoleUser.ROLE_TRIATOR);
-        roleRepository.save(role);
+        Role roleTriator = roleRepository.save(role);
 
         role = new Role();
         role.setName(RoleUser.ROLE_FINISHER);
-        roleRepository.save(role);
+        Role roleFinisher = roleRepository.save(role);
 
+        // admin
+        User user = new User();
+        user.setFirstName("André");
+        user.setLastName("Masiero");
+        user.setUsername("admin@teste.com");
+        user.setPassword(new BCryptPasswordEncoder().encode("123456"));
         User userSaved = userRepository.save(user);
         userSaved.setRole(roleAdmin);
+        userRepository.save(userSaved);
 
+        // triador
+        user = new User();
+        user.setFirstName("Evaristo");
+        user.setLastName("Triador");
+        user.setUsername("triador@teste.com");
+        user.setPassword(new BCryptPasswordEncoder().encode("123456"));
+        userSaved = userRepository.save(user);
+        userSaved.setRole(roleTriator);
+        userRepository.save(userSaved);
+
+        // finalizador
+        user = new User();
+        user.setFirstName("João");
+        user.setLastName("Finalizador");
+        user.setUsername("finalizador@teste.com");
+        user.setPassword(new BCryptPasswordEncoder().encode("123456"));
+        userSaved = userRepository.save(user);
+        userSaved.setRole(roleFinisher);
         userRepository.save(userSaved);
     }
 }
