@@ -62,6 +62,9 @@ Opção 3 - Utilizar uma IDE
 - Baixar as dependencias: 'npm install'
 - Subir o front: 'ng serve', irá subir o front na porta 4200
 
+## Swagger
+http://localhost:8080/swagger-ui.html
+
 # Telas do sistema
 Login: admin@teste.com - triador@teste.com - finalizador@teste.com (todos são senha 123456)
 <p align="center">
