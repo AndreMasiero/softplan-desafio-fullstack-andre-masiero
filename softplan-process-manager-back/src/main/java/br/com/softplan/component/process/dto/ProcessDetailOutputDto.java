@@ -2,17 +2,24 @@ package br.com.softplan.component.process.dto;
 
 import br.com.softplan.component.user.dto.UserOutputDto;
 import br.com.softplan.enums.ProcessStatus;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.util.Date;
 import java.util.List;
 
 public class ProcessDetailOutputDto {
 
+    @ApiModelProperty("${process.outputdto.name}")
     private String name;
+    @ApiModelProperty("${process.outputdto.description}")
     private String description;
+    @ApiModelProperty("${process.outputdto.insertDate}")
     private Date insertDate;
+    @ApiModelProperty("${process.outputdto.processStatus}")
     private ProcessStatus status;
+    @ApiModelProperty("${process.outputdto.users}")
     private List<UserOutputDto> collaborators;
+    @ApiModelProperty("${process.feedback.inputdto.feddback}")
     private List<ProcessFeedbackOutputDto> feedbacks;
 
     public String getName() {

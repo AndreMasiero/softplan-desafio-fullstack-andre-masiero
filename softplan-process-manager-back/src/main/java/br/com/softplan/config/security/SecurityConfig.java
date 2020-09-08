@@ -42,12 +42,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/source"
     };
 
+    private static final String[] SWAGGER_AUTH_WHITELIST = {
+            // -- swagger ui
+            "/v2/api-docs", "/swagger-resources", "/swagger-resources/**", "/configuration/ui",
+            "/configuration/security", "/swagger-ui.html", "/webjars/**"
+    };
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         http.cors().and().csrf().disable();
         http.authorizeRequests()
                 .antMatchers(PUBLIC_MATCHERS).permitAll()
+                .antMatchers(SWAGGER_AUTH_WHITELIST).permitAll()
                 .anyRequest().authenticated();
         http.addFilterBefore(new JWTAuthenticationFilter(authenticationManager(), jwtUtil, userRepository), UsernamePasswordAuthenticationFilter.class);
         http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil, userRepository));

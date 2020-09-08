@@ -1,11 +1,16 @@
 package br.com.softplan.component.process.dto;
 
+import io.swagger.annotations.ApiModelProperty;
+
 import java.util.Date;
 
 public class ProcessFeedbackOutputDto {
 
+    @ApiModelProperty("${process.feedback.outputdto.feddback}")
     private String feedback;
+    @ApiModelProperty("${process.feedback.outputdto.user}")
     private String user;
+    @ApiModelProperty("${process.feedback.outputdto.insertDate}")
     private Date insertDate;
 
     public String getFeedback() {

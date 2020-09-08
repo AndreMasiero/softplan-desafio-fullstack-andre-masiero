@@ -1,13 +1,19 @@
 package br.com.softplan.component.user.dto;
 
 import br.com.softplan.enums.RoleUser;
+import io.swagger.annotations.ApiModelProperty;
 
 public class UserOutputDto {
 
+    @ApiModelProperty("${user.outputdto.id}")
     private Long id;
+    @ApiModelProperty("${user.outputdto.firstName}")
     private String firstName;
+    @ApiModelProperty("${user.outputdto.lastName}")
     private String lastName;
+    @ApiModelProperty("${user.outputdto.email}")
     private String email;
+    @ApiModelProperty("${user.outputdto.role}")
     private RoleUser role;
 
     public Long getId() {

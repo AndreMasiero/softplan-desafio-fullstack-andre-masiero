@@ -1,5 +1,6 @@
 package br.com.softplan.component.process.dto;
 
+import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotEmpty;
@@ -7,10 +8,12 @@ import java.util.Set;
 
 public class ProcessInputDto {
 
+    @ApiModelProperty("${process.inputdto.name}")
     @NotEmpty(message = "Preenchimento obrigatório")
     @Length(min = 3, max = 50, message = "O tamanho deve ser entre 3 e 50 caracteres")
     private String name;
 
+    @ApiModelProperty("${process.inputdto.description}")
     @NotEmpty(message = "Preenchimento obrigatório")
     @Length(min = 3, max = 160, message = "O tamanho deve ser entre 3 e 160 caracteres")
     private String description;
